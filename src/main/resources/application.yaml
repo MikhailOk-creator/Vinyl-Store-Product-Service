@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: Product Service
+  data:
+    mongodb:
+      uri: mongodb://localhost:${MONGODB_DOCKER_PORT}/${MONGO_INITDB_DATABASE}
+      username: ${MONGO_INITDB_ROOT_USERNAME}
+      password: ${MONGO_INITDB_ROOT_PASSWORD}
