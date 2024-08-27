@@ -1,40 +1,23 @@
 package ru.okhapkin.vinylstore.productservice.model;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-
 import java.math.BigDecimal;
-import java.util.List;
 
-@Document(value = "product")
 public class Product {
-    @Id
-    private String id;
     private String name;
-    private String musician;
-    private String label;
     private String description;
     private BigDecimal price;
-    private List<String> listOfSongs;
+    private Type typeOfProduct;
+
+    public enum Type {
+        VINYL
+    }
 
     public Product() {}
 
-    public Product(String name, String musician, String label, String description, BigDecimal price, List<String> listOfSongs) {
-        this.id = id;
+    public Product(String name, String description, BigDecimal price) {
         this.name = name;
-        this.musician = musician;
-        this.label = label;
         this.description = description;
         this.price = price;
-        this.listOfSongs = listOfSongs;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -43,22 +26,6 @@ public class Product {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getMusician() {
-        return musician;
-    }
-
-    public void setMusician(String musician) {
-        this.musician = musician;
-    }
-
-    public String getLabel() {
-        return label;
-    }
-
-    public void setLabel(String label) {
-        this.label = label;
     }
 
     public String getDescription() {
@@ -77,11 +44,11 @@ public class Product {
         this.price = price;
     }
 
-    public List<String> getListOfSongs() {
-        return listOfSongs;
+    public Type getTypeOfProduct() {
+        return typeOfProduct;
     }
 
-    public void setListOfSongs(List<String> listOfSongs) {
-        this.listOfSongs = listOfSongs;
+    public void setTypeOfProduct(Type typeOfProduct) {
+        this.typeOfProduct = typeOfProduct;
     }
 }

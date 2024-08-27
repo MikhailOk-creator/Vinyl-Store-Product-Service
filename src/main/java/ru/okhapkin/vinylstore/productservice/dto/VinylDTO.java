@@ -3,7 +3,7 @@ package ru.okhapkin.vinylstore.productservice.dto;
 import java.math.BigDecimal;
 import java.util.List;
 
-public class ProductDTO {
+public class VinylDTO {
     private String name;
     private String musician;
     private String label;

@@ -1,9 +1,9 @@
 package ru.okhapkin.vinylstore.productservice.service;
 
 import org.springframework.stereotype.Service;
-import ru.okhapkin.vinylstore.productservice.dto.ProductDTO;
-import ru.okhapkin.vinylstore.productservice.model.Product;
-import ru.okhapkin.vinylstore.productservice.repository.ProductRepository;
+import ru.okhapkin.vinylstore.productservice.dto.VinylDTO;
+import ru.okhapkin.vinylstore.productservice.model.Vinyl;
+import ru.okhapkin.vinylstore.productservice.repository.VinylRepository;
 
 import java.util.List;
 import java.util.UUID;
@@ -15,28 +15,29 @@ public class ProductService {
 
     private static final Logger logger = Logger.getLogger(ProductService.class.getName());
 
-    private final ProductRepository productRepository;
+    private final VinylRepository vinylRepository;
 
-    public ProductService(ProductRepository productRepository) {
-        this.productRepository = productRepository;
+    public ProductService(VinylRepository vinylRepository) {
+        this.vinylRepository = vinylRepository;
     }
 
-    public void save(ProductDTO productDTO) {
-        Product product = new Product();
+    public void saveNewVinyl(VinylDTO vinylDTO) {
+        Vinyl product = new Vinyl(
+                UUID.randomUUID().toString(),
+                vinylDTO.getName(),
+                vinylDTO.getDescription(),
+                vinylDTO.getPrice(),
+                vinylDTO.getMusician(),
+                vinylDTO.getLabel(),
+                vinylDTO.getListOfSongs()
+        );
 
-        product.setId(UUID.randomUUID().toString());
-        product.setName(productDTO.getName());
-        product.setDescription(productDTO.getDescription());
-        product.setPrice(productDTO.getPrice());
-        product.setListOfSongs(productDTO.getListOfSongs());
-        product.setLabel(productDTO.getLabel());
-
-        productRepository.save(product);
-        logger.info(String.format("Saved product %s with id %s", product.getName(), product.getId()));
+        vinylRepository.save(product);
+        logger.info(String.format("Saved product '%s' with id '%s'", product.getName(), product.getId()));
     }
 
-    public List<Product> getAll() {
-        return productRepository.findAll();
+    public List<Vinyl> getAllVinyl() {
+        return vinylRepository.findAll();
     }
 
 }
