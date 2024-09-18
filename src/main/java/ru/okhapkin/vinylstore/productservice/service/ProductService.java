@@ -24,12 +24,13 @@ public class ProductService {
     public void saveNewVinyl(VinylDTO vinylDTO) {
         Vinyl product = new Vinyl(
                 UUID.randomUUID().toString(),
-                vinylDTO.getName(),
-                vinylDTO.getDescription(),
-                vinylDTO.getPrice(),
-                vinylDTO.getMusician(),
-                vinylDTO.getLabel(),
-                vinylDTO.getListOfSongs()
+                vinylDTO.name(),
+                vinylDTO.description(),
+                vinylDTO.price(),
+                vinylDTO.countOfDiscs(),
+                vinylDTO.musician(),
+                vinylDTO.label(),
+                vinylDTO.listOfSongs()
         );
 
         vinylRepository.save(product);
@@ -37,7 +38,7 @@ public class ProductService {
     }
 
     public List<Vinyl> getAllVinyl() {
-        return vinylRepository.findAll();
+        return (List<Vinyl>) vinylRepository.findAll();
     }
 
 }

@@ -1,8 +1,5 @@
 spring:
   application:
     name: Product Service
-  data:
-    mongodb:
-      uri: mongodb://localhost:${MONGODB_DOCKER_PORT}/${MONGO_INITDB_DATABASE}
-server:
-  port: 8081
+  config:
+    import: optional:configserver:http://localhost:8888

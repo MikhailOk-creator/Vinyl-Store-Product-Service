@@ -4,7 +4,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import ru.okhapkin.vinylstore.productservice.dto.VinylDTO;
-import ru.okhapkin.vinylstore.productservice.model.Product;
 import ru.okhapkin.vinylstore.productservice.model.Vinyl;
 import ru.okhapkin.vinylstore.productservice.service.ProductService;
 

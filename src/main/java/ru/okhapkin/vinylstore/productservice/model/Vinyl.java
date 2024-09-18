@@ -1,19 +1,36 @@
 package ru.okhapkin.vinylstore.productservice.model;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import jakarta.persistence.*;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 
-@Document(value = "vinyl")
-public class Vinyl extends Product {
+@Entity
+@Table(name = "vinyl_t")
+public class Vinyl {
     @Id
     private String id;
+
+    @Column(name = "name_of_album", unique = true, nullable = false)
+    private String name;
+
+    @Column(name = "description")
+    private String description;
+
+    @Column(name = "price", nullable = false)
+    private BigDecimal price;
+
+    @Column(name = "count_of_discs", nullable = false)
+    private Integer countOfDiscs;
+
+    @Column(name = "musician", nullable = false)
     private String musician;
+
+    @Column(name = "label", nullable = false)
     private String label;
-    private List<String> listOfSongs;
+
+    @Column(name = "list_of_songs", nullable = false)
+    private String listOfSongs;
 
     public Vinyl() {
     }
@@ -22,15 +39,18 @@ public class Vinyl extends Product {
                  String name,
                  String description,
                  BigDecimal price,
+                 Integer countOfDiscs,
                  String musician,
                  String label,
-                 List<String> listOfSongs) {
-        super(name, description, price);
+                 String listOfSongs) {
         this.id = id;
         this.musician = musician;
         this.label = label;
         this.listOfSongs = listOfSongs;
-        this.setTypeOfProduct(Type.VINYL);
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.countOfDiscs = countOfDiscs;
     }
 
     public String getId() {
@@ -39,6 +59,38 @@ public class Vinyl extends Product {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public Integer getCountOfDiscs() {
+        return countOfDiscs;
+    }
+
+    public void setCountOfDiscs(Integer countOfDiscs) {
+        this.countOfDiscs = countOfDiscs;
     }
 
     public String getMusician() {
@@ -57,11 +109,11 @@ public class Vinyl extends Product {
         this.label = label;
     }
 
-    public List<String> getListOfSongs() {
+    public String getListOfSongs() {
         return listOfSongs;
     }
 
-    public void setListOfSongs(List<String> listOfSongs) {
+    public void setListOfSongs(String listOfSongs) {
         this.listOfSongs = listOfSongs;
     }
 }
